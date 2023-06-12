@@ -1,6 +1,8 @@
 <?php 
 
+$email = $title = $ingredients = '';
 $errors = array('email' => '', 'title' => '', 'ingredients' => '');
+
 
     if(isset($_POST['submit'])){
         // echo htmlspecialchars($_POST['email']);
@@ -48,13 +50,13 @@ $errors = array('email' => '', 'title' => '', 'ingredients' => '');
  <form action="" class="white" action="add.php" method="POST">
     <label for="email">Your Email:</label>
     <div class="red-text"><?php echo $errors['email'];?></div>
-    <input type="text" name="email">
+    <input type="text" name="email" value="<?php echo $email; ?>">
     <label for="title">Pizza Title:</label>
     <div class="red-text"><?php echo $errors['title'];?></div>    
-    <input type="text" name="title">
+    <input type="text" name="title" value="<?php echo $title; ?>">
     <label for="ingredients">Ingredients (Separated by comma) </label>
     <div class="red-text"><?php echo $errors['ingredients'];?></div>    
-    <input type="text" name="ingredients">
+    <input type="text" name="ingredients" value="<?php echo $ingredients; ?>">
     <div class="center">
         <input type="submit" name="submit" value="submit" class="btn brand z-depth-0">
     </div>
