@@ -38,12 +38,18 @@ $errors = array('email' => '', 'title' => '', 'ingredients' => '');
                 $errors['ingredients'] = 'Ingredients must be a commas separated list. <br />';
             }
         }        
-        
+    
+    if(array_filter($errors)){
+        echo 'errors in the form';
+    }else{
+        header('Location: index.php');
+    }    
+
 
     }
 
 ?>
-
+<?php include('template_part/header.php'); ?>
 <section class="container grey-text">
  <h4 class="center">Add a Pizza</h4>
 
@@ -62,3 +68,4 @@ $errors = array('email' => '', 'title' => '', 'ingredients' => '');
     </div>
  </form>
 </section>
+<?php include('template_part/footer.php'); ?>
