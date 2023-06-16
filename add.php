@@ -1,5 +1,7 @@
 <?php 
 
+include('config/db_connect.php');
+
 $email = $title = $ingredients = '';
 $errors = array('email' => '', 'title' => '', 'ingredients' => '');
 
@@ -39,17 +41,33 @@ $errors = array('email' => '', 'title' => '', 'ingredients' => '');
             }
         }        
     
-    if(array_filter($errors)){
-        echo 'errors in the form';
-    }else{
-        header('Location: index.php');
-    }    
+        if(array_filter($errors)){
+            echo 'errors in the form';
+        }else{
+
+            $email = mysqli_real_escape_string($conn, $_POST['email']);
+            $title = mysqli_real_escape_string($conn, $_POST['title']);
+            $ingredients = mysqli_real_escape_string($conn, $_POST['ingredients']);
+
+            //Create SQL
+            $sql = "INSERT INTO tbl_pizzas(title,email,ingredients) VALUES ('$email','$title','$ingredients')";
+
+
+            If(mysqli_query($conn, $sql)){
+            //success
+            header('Location: index.php');
+            }else{
+                echo 'Query Error' . mysqli_error($conn);
+    
+            }    
 
 
     }
+}
 
 ?>
 <?php include('template_part/header.php'); ?>
+
 <section class="container grey-text">
  <h4 class="center">Add a Pizza</h4>
 
